@@ -13,19 +13,23 @@ module Builders
         @language = params[:language] || 'ruby'
         @sort = params[:sort] || 'stars'
         @order = params[:order] || 'desc'
+        @page = params[:page] || 1
+        @per_page = params[:per_page] || 20
       end
 
       def build_uri_query
         {
           q: formatted_query,
           sort: sort,
-          order: order
+          order: order,
+          page: page,
+          per_page: per_page
         }.map{ |k, v| "#{k}=#{v}" }.join("&")
       end
 
       private
 
-      attr_reader :keywords, :username, :language, :sort, :order
+      attr_reader :keywords, :username, :language, :sort, :order, :page, :per_page
 
       def formatted_query
         [
