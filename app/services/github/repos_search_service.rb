@@ -1,5 +1,6 @@
 require 'net/http'
 require 'builders/github/uri_query_builder'
+require 'json_parsers/github/repos_search_parser'
 
 module Github
   class ReposSearchService
@@ -15,7 +16,7 @@ module Github
 
     def execute
       response = Net::HTTP.get_response(uri)
-      parse_items(response)
+      parse_items(response.body)
     end
 
     private
@@ -33,8 +34,8 @@ module Github
       Builders::Github::UriQueryBuilder.build(params)
     end
 
-    def parse_items(response)
-      parsed = JSON.parse(response.body)
+    def parse_items(response_body)
+      JSONParsers::Github::ReposSearchParser.parse(response_body)
     end
   end
 end
