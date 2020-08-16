@@ -1,2 +1,0 @@
-class RepositoriesSearchController < ApplicationController
-end
