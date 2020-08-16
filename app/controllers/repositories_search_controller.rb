@@ -1,0 +1,2 @@
+class RepositoriesSearchController < ApplicationController
+end
