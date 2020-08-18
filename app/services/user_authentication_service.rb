@@ -39,11 +39,7 @@ class UserAuthenticationService
   end
 
   def success_response
-    { content: {
-        auth_token: web_token
-      },
-      status: :ok
-    }
+    { content: { auth_token: web_token }, status: :ok }
   end
 
   def error_response
