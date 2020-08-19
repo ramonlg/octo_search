@@ -5,7 +5,7 @@ module Api
 
       def create
         user_auth = UserAuthenticationService.call(
-          params[:username], params[:password]
+          { username: params[:username], password: params[:password] }
         )
 
         render json: user_auth[:content], status: user_auth[:status]

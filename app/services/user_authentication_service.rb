@@ -1,15 +1,9 @@
 require 'json_web_token'
 
-class UserAuthenticationService
-  private_class_method :new
-
-  def self.call(username, password)
-    new(username, password).call
-  end
-
-  def initialize(username, password)
-    @username = username
-    @password = password
+class UserAuthenticationService < ApplicationService
+  def initialize(params)
+    @username = params[:username]
+    @password = params[:password]
   end
 
   def call
