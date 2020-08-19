@@ -1,14 +1,8 @@
 require 'json_web_token'
 
-class UserAuthorizationService
-  private_class_method :new
-
-  def self.call(headers = {})
-    new(headers).call
-  end
-
-  def initialize(headers)
-    @headers = headers
+class UserAuthorizationService < ApplicationService
+  def initialize(params)
+    @headers = params[:headers]
   end
 
   def call

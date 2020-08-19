@@ -10,7 +10,7 @@ RSpec.describe UserAuthorizationService, type: :service do
         headers = ActionDispatch::Http::Headers.from_hash({ "HTTP_USER_AGENT" => "curl/7.54.0" })
         headers["Authorization"] = user_token(user)
 
-        authorized_user = described_class.call(headers)
+        authorized_user = described_class.call(headers: headers)
 
         expect(authorized_user).to eq(user)
       end
@@ -21,7 +21,7 @@ RSpec.describe UserAuthorizationService, type: :service do
         headers = ActionDispatch::Http::Headers.from_hash({ "HTTP_USER_AGENT" => "curl/7.54.0" })
         headers["Authorization"] = ''
 
-        authorized_user = described_class.call(headers)
+        authorized_user = described_class.call(headers: headers)
 
         expect(authorized_user).to  be_blank
       end
