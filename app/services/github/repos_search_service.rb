@@ -7,14 +7,14 @@ module Github
     private_class_method :new
 
     def self.call(params)
-      new(params).execute
+      new(params).call
     end
 
     def initialize(params)
       @params ||= params
     end
 
-    def execute
+    def call
       response = Net::HTTP.get_response(uri)
       parse_items(response.body)
     end
@@ -35,7 +35,7 @@ module Github
     end
 
     def parse_items(response_body)
-      JSONParsers::Github::ReposSearchParser.parse(response_body)
+      JsonParsers::Github::ReposSearchParser.parse(response_body)
     end
   end
 end

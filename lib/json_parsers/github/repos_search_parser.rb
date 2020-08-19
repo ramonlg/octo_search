@@ -1,4 +1,4 @@
-module JSONParsers
+module JsonParsers
   module Github
     class ReposSearchParser
       private_class_method :new
