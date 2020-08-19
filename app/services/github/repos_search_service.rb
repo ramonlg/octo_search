@@ -3,17 +3,7 @@ require 'builders/github/uri_query_builder'
 require 'json_parsers/github/repos_search_parser'
 
 module Github
-  class ReposSearchService
-    private_class_method :new
-
-    def self.call(params)
-      new(params).call
-    end
-
-    def initialize(params)
-      @params ||= params
-    end
-
+  class ReposSearchService < ApplicationService
     def call
       response = Net::HTTP.get_response(uri)
       parse_items(response.body)
